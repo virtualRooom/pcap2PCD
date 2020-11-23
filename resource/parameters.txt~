@@ -1,0 +1,62 @@
+# for debug
+MaxTransformThreshold=0.08
+
+fileNamePcap=../../HDL-32_6000_10625.pcap
+calibrationPath=./res/HDL-32.xml
+
+# show the registration process or not
+showCloud=1
+
+# If use submap, it will improve speed of align 
+#    but reduce accuracy of align result.
+useSubmap=1
+subMapSize=500
+
+# Set map resolution.
+map_resolution=0.05
+
+# If map too large, building process will failed.
+# So we need to downstample each frame.
+# If build_map_frame_grid=0, it means not downstample.
+build_map_frame_grid=0.2
+
+# Save map to a compressed format or not.
+compressMap=0
+
+# If distanceControl=0, it means don't use distance control. 
+# If distanceControl>0, like 500, it means the points 500 meters 
+#    away from the radar will be discarded. 
+distanceControl=500
+
+
+
+# ———————————————————————————————————————————————————-
+# Not recommend to change the following parameters.
+# ———————————————————————————————————————————————————-
+# If first frame too sparse, it shouldn’t be the base cloud.
+sparseThreshold=100
+
+# Voxel Grid
+applyVoxelGrid=1
+voxel_leafsize=0.2
+
+# resolution of octree, it will influence searching neighbor.
+octree_resolution=0.05
+
+# parameters of PCL-GICP 
+gicp_epsilon=0.0000001
+MaximumIteration=10
+MaxCorrespondenceDistance=0.5
+
+
+
+
+
+
+
+
+
+
+
+
+

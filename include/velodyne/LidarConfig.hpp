@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <cmath>
 
 // 对应于实验室采用的三代不同类型的激光雷达
 enum LidarType

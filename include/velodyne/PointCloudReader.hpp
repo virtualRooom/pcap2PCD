@@ -46,7 +46,8 @@ public:
 		}	
 	}
 
-	int getScanNum(){return nScans;}
+	int getScanNum() { return nScans; }
+	int getTotalFrame() { return reader.totalFrame(); }
 	void setCalibFile(std::string _fileName) { calibrationPath = _fileName; }
 	void setScanGap(int value) {  scanGap = value;}
 	void setVoxelSize(float _voxelLeafsize) { voxelLeafsize = _voxelLeafsize; }

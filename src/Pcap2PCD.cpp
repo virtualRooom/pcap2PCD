@@ -13,6 +13,7 @@ int main(int argc, const char **argv)
     parser.addArgument("-d", "--data_type", true);
     parser.addArgument("-b", "--begin_id");
     parser.addArgument("-e", "--end_id");
+    parser.addArgument("-o", "--output_dir");
     parser.parse(argc, argv);
 
     int begin_id = 0;
@@ -25,16 +26,19 @@ int main(int argc, const char **argv)
 
     PointCloudReader reader;
     reader.setPcapFile(parser.get("pcap"));
-    reader.setDataType(parser.get<int>("data_type"));
+    reader.setDataType(parser.get<int>("data_type"));   // 0:VLP-16, 1:HDL-32, 2:VLP-32c
     reader.setVoxelSize(0.03); // 默认单帧分辨率3cm
     reader.setValidDistance(25.0); // 默认有效距离25m
     reader.init();
 
     string out_dir = "output_pcd";
+    if(parser.count("output_dir"))
+        out_dir = parser.get<std::string>("output_dir");
     makeDir(out_dir);
 
     PointCloud::Ptr cloud(new PointCloud);
     long long frameID = begin_id;
+    end_id = end_id == -1 ? reader.getTotalFrame() : end_id;
     consoleProgress(0);
 
     while (frameID <= end_id && reader.readPointCloud(cloud, frameID))
